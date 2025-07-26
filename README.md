@@ -139,6 +139,67 @@ flowchart TD
 
 ---
 
+## Estrutura de Pastas
+
+```
+src/
+  app.module.ts
+  app.service.ts
+  main.ts
+  env.ts
+  controllers/
+    authenticate.controller.ts
+    create-account.controller.ts
+    create-question.controller.ts
+    list-recent-questions.controller.ts
+    ...
+  auth/
+    auth.module.ts
+    current-user.decorator.ts
+    jwt.strategy.ts
+  core/
+    entities/
+      aggregate-root.ts
+      entity.ts
+      unique-entity-id.ts
+      watched-list.ts
+      ...
+    events/
+      domain.event.ts
+      domain.events.ts
+      event-handler.ts
+      ...
+    errors/
+    repositories/
+    types/
+  domain/
+    forum/
+      enterprise/
+        entities/
+          question.ts, answer.ts, ...
+          value-objects/
+            slug.ts
+        events/
+          answer-created-event.ts
+          question-best-answer-chosen-event.ts
+      application/
+        use-cases/
+          create-question.ts, answer-question.ts, ...
+        subscribers/
+        repositories/
+    notification/
+      enterprise/
+        entities/
+      application/
+        use-cases/
+        repositories/
+  pipes/
+  prisma/
+    prisma.service.ts
+```
+
+---
+
 ## Como Rodar Localmente
 
 1. **Clone o repositório:**
