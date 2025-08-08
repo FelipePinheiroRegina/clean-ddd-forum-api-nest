@@ -6,7 +6,8 @@ import { Answer } from '../../enterprise/entities/answer'
 import { AnswerAttachmentList } from '../../enterprise/entities/answer-attachment-list'
 import { AnswerAttachment } from '../../enterprise/entities/answer-attachment'
 import { UniqueEntityId } from '@/core/entities/unique-entity-id'
-import { InMemoryAnswerAttachmentsRepository } from 'test/repositories/in-memory-answer-attachments-repository'
+import { Injectable } from '@nestjs/common'
+import { AnswerAttachmentsRepository } from '../repositories/answer-attachments-repository'
 
 interface UpdateAnswerUseCaseRequest {
   authorId: string
@@ -20,10 +21,11 @@ type UpdateAnswerUseCaseResponse = Either<
   { answer: Answer }
 >
 
+@Injectable()
 export class UpdateAnswerUseCase {
   constructor(
     private answersRepository: AnswersRepository,
-    private answersAttachmentsRepository: InMemoryAnswerAttachmentsRepository,
+    private answersAttachmentsRepository: AnswerAttachmentsRepository,
   ) {}
 
   async execute({
