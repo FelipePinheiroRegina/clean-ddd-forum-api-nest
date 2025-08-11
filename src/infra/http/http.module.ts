@@ -21,6 +21,18 @@ import { UpdateAnswerController } from './controllers/update-answer.controller'
 import { UpdateAnswerUseCase } from '@/domain/forum/application/use-cases/update-answer'
 import { DeleteAnswerController } from './controllers/delete-answer.controller'
 import { DeleteAnswerUseCase } from '@/domain/forum/application/use-cases/delete-answer'
+import { ListQuestionAnswersController } from './controllers/list-question-anwers.controller'
+import { ListQuestionAnswersUseCase } from '@/domain/forum/application/use-cases/list-question-answers'
+import { ChooseBestAnswerToQuestionController } from './controllers/choose-question-best-answer.controller'
+import { ChooseBestAnswerToQuestionUseCase } from '@/domain/forum/application/use-cases/choose-best-answer-to-question'
+import { CommentOnQuestionsController } from './controllers/comment-on-question.controller'
+import { CommentOnQuestionUseCase } from '@/domain/forum/application/use-cases/comment-on-question'
+import { DeleteQuestionCommentController } from './controllers/delete-question-comment.controller'
+import { DeleteQuestionCommentUseCase } from '@/domain/forum/application/use-cases/delete-question-comment'
+import { CommentOnAnswersController } from './controllers/comment-on-answer.controller'
+import { CommentOnAnswerUseCase } from '@/domain/forum/application/use-cases/comment-on-answer'
+import { DeleteAnswerCommentUseCase } from '@/domain/forum/application/use-cases/delete-answer-comment'
+import { DeleteAnswerCommentController } from './controllers/delete-answer-comment.controller'
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
@@ -35,6 +47,12 @@ import { DeleteAnswerUseCase } from '@/domain/forum/application/use-cases/delete
     AnswerQuestionsController,
     UpdateAnswerController,
     DeleteAnswerController,
+    ListQuestionAnswersController,
+    ChooseBestAnswerToQuestionController,
+    CommentOnQuestionsController,
+    DeleteQuestionCommentController,
+    CommentOnAnswersController,
+    DeleteAnswerCommentController,
   ],
   providers: [
     CreateQuestionUseCase,
@@ -47,6 +65,12 @@ import { DeleteAnswerUseCase } from '@/domain/forum/application/use-cases/delete
     AnswerQuestionUseCase,
     UpdateAnswerUseCase,
     DeleteAnswerUseCase,
+    ListQuestionAnswersUseCase,
+    ChooseBestAnswerToQuestionUseCase,
+    CommentOnQuestionUseCase,
+    DeleteQuestionCommentUseCase,
+    CommentOnAnswerUseCase,
+    DeleteAnswerCommentUseCase,
   ],
 })
 export class HttpModule {}
