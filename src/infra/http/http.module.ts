@@ -37,6 +37,7 @@ import { ListQuestionCommentController } from './controllers/list-question-comme
 import { ListQuestionCommentUseCase } from '@/domain/forum/application/use-cases/list-question-comment'
 import { ListAnswerCommentController } from './controllers/list-answer-comments.controller'
 import { ListAnswerCommentUseCase } from '@/domain/forum/application/use-cases/list-answer-comment'
+import { UploadAttachmentController } from './controllers/upload-attachment.controller'
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
@@ -59,6 +60,7 @@ import { ListAnswerCommentUseCase } from '@/domain/forum/application/use-cases/l
     DeleteAnswerCommentController,
     ListQuestionCommentController,
     ListAnswerCommentController,
+    UploadAttachmentController,
   ],
   providers: [
     CreateQuestionUseCase,
