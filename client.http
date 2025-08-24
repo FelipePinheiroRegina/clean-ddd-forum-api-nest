@@ -18,7 +18,7 @@ POST {{baseUrl}}/sessions
 Content-Type: application/json
 
 {
-  "email": "jhodoe@email.com",
+  "email": "jhodoe3@email.com",
   "password": "12345678"
 }
 
@@ -40,8 +40,3 @@ Authorization: {{accessToken}}
 GET {{baseUrl}}/questions/list_recent_questions
 Content-Type: application/json
 Authorization: {{accessToken}}
-
-{
-  "title": "New Question",
-  "content": "This is a new question."
-}
