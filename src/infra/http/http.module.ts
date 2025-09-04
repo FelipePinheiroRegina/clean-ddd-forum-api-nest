@@ -38,9 +38,11 @@ import { ListQuestionCommentUseCase } from '@/domain/forum/application/use-cases
 import { ListAnswerCommentController } from './controllers/list-answer-comments.controller'
 import { ListAnswerCommentUseCase } from '@/domain/forum/application/use-cases/list-answer-comment'
 import { UploadAttachmentController } from './controllers/upload-attachment.controller'
+import { StorageModule } from '../storage/storage.module'
+import { UploadAndCreateAttachmentUseCase } from '@/domain/forum/application/use-cases/upload-and-create-attachment'
 
 @Module({
-  imports: [DatabaseModule, CryptographyModule],
+  imports: [DatabaseModule, CryptographyModule, StorageModule],
   controllers: [
     CreateAccountController,
     AuthenticateController,
@@ -81,6 +83,7 @@ import { UploadAttachmentController } from './controllers/upload-attachment.cont
     DeleteAnswerCommentUseCase,
     ListQuestionCommentUseCase,
     ListAnswerCommentUseCase,
+    UploadAndCreateAttachmentUseCase,
   ],
 })
 export class HttpModule {}

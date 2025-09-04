@@ -1,7 +1,10 @@
-import 'dotenv/config'
+import { config } from 'dotenv'
 import { execSync } from 'node:child_process'
 import { randomUUID } from 'node:crypto'
 import { PrismaClient } from '@prisma/client'
+
+config({ path: '.env', override: true })
+config({ path: '.env.test', override: true })
 
 const schemaId = `schema_${randomUUID().replace(/-/g, '_')}`
 
@@ -36,39 +39,3 @@ afterAll(async () => {
     await prisma?.$disconnect()
   }
 })
-
-// Desse jeito não funciona no Windows
-
-// import 'dotenv/config'
-// import { PrismaClient } from '@prisma/client'
-// import { randomUUID } from 'node:crypto'
-// import { execSync } from 'node:child_process'
-
-// const prisma = new PrismaClient()
-
-// function generateUniqueDatabaseUrl(schemaId: string) {
-//   if (!process.env.DATABASE_URL) {
-//     throw new Error('DATABASE_URL is not set in the environment variables')
-//   }
-
-//   const url = new URL(process.env.DATABASE_URL)
-
-//   url.searchParams.set('schema', schemaId)
-
-//   return url.toString()
-// }
-
-// const schemaId = randomUUID()
-
-// beforeAll(() => {
-//   const databaseUrl = generateUniqueDatabaseUrl(schemaId)
-
-//   process.env.DATABASE_URL = databaseUrl
-
-//   execSync('pnpm prisma migrate deploy')
-// })
-
-// afterAll(async () => {
-//   await prisma.$executeRawUnsafe(`DROP SCHEMA IF EXISTS "${schemaId}" CASCADE`)
-//   await prisma.$disconnect()
-// })
