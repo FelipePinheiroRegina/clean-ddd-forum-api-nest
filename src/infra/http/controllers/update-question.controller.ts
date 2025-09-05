@@ -15,6 +15,7 @@ import { UpdateQuestionUseCase } from '@/domain/forum/application/use-cases/upda
 const updateQuestionBodySchema = z.object({
   title: z.string(),
   content: z.string(),
+  attachments: z.array(z.string().uuid()),
 })
 
 export type UpdateQuestionBodySchema = z.infer<typeof updateQuestionBodySchema>
@@ -31,14 +32,14 @@ export class UpdateQuestionsController {
     @CurrentUser() user: UserPayload,
     @Param('id') questionId: string,
   ) {
-    const { title, content } = body
+    const { title, content, attachments } = body
     const { sub: userId } = user
 
     const result = await this.updateQuestion.execute({
       authorId: userId,
       title,
       content,
-      attachmentsIds: [],
+      attachmentsIds: attachments,
       questionId,
     })
 
