@@ -31,8 +31,6 @@ export class ListQuestionCommentUseCase {
         },
       )
 
-    console.log(comments)
-
     return right({ comments })
   }
 }

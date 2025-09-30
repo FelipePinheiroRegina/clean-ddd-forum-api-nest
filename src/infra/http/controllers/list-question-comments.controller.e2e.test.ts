@@ -63,8 +63,8 @@ describe('List Question Comments Controller (e2e)', () => {
     /* eslint-disable */
     expect(response.body).toEqual({
       comments: expect.arrayContaining([
-        expect.objectContaining({ content: 'Comment 02' }),
-        expect.objectContaining({ content: 'Comment 01' }),
+        expect.objectContaining({ content: 'Comment 02', authorName: user.name }),
+        expect.objectContaining({ content: 'Comment 01', authorName: user.name }),
       ]),
     })
     /* eslint-enable */
