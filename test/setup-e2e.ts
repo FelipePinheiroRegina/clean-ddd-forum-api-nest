@@ -2,6 +2,7 @@ import { config } from 'dotenv'
 import { execSync } from 'node:child_process'
 import { randomUUID } from 'node:crypto'
 import { PrismaClient } from '@prisma/client'
+import { DomainEvents } from '@/core/events/domain.events'
 
 config({ path: '.env', override: true })
 config({ path: '.env.test', override: true })
@@ -27,6 +28,8 @@ beforeAll(async () => {
 
   // 3) só AGORA crie o client (pega a URL certa)
   prisma = new PrismaClient()
+
+  DomainEvents.shouldRun = false
 }, 30_000)
 
 afterAll(async () => {
