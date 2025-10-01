@@ -3,6 +3,8 @@ import { execSync } from 'node:child_process'
 import { randomUUID } from 'node:crypto'
 import { PrismaClient } from '@prisma/client'
 import { DomainEvents } from '@/core/events/domain.events'
+import { Redis } from 'ioredis'
+import { envSchema } from '@/infra/env/env'
 
 config({ path: '.env', override: true })
 config({ path: '.env.test', override: true })
@@ -19,15 +21,24 @@ function buildDbUrlWithSchema(schema: string) {
 
 let prisma: PrismaClient
 
+const env = envSchema.parse(process.env)
+const redis = new Redis({
+  host: env.REDIS_HOST,
+  port: env.REDIS_PORT,
+  db: env.REDIS_DB,
+})
+
 beforeAll(async () => {
   // 1) aponta o Prisma CLI e seu app para um schema único deste arquivo
-  process.env.DATABASE_URL = buildDbUrlWithSchema(schemaId)
+  env.DATABASE_URL = buildDbUrlWithSchema(schemaId)
 
   // 2) cria o schema do zero
   execSync('pnpm prisma db push', { stdio: 'inherit' })
 
   // 3) só AGORA crie o client (pega a URL certa)
   prisma = new PrismaClient()
+
+  await redis.flushdb()
 
   DomainEvents.shouldRun = false
 }, 30_000)

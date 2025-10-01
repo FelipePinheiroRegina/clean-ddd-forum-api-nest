@@ -8,7 +8,7 @@ import {
 } from '@prisma/client'
 import { PrismaAttachmentsMapper } from './prisma-attachments-mapper'
 
-type PrismaQuestionDetails = PrismaQuestion & {
+export type PrismaQuestionDetails = PrismaQuestion & {
   author: PrismaUser
   attachments: PrismaAttachment[]
 }
